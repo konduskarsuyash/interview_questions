@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.universal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 100vw;
+  background: white;
+  border-radius: 10px;
+  transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.shadow {
+  box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+              0 0  0 2px rgb(190, 190, 190),
+              0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Navbar styles */
+.navbar {
+  padding: 10px 0; /* Padding */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+/* Style dropdown select elements */
+.dropdown-select {
+  padding: 10px;
+  font-size: 16px;
+  border: none; /* Remove border */
+  border-radius: 4px;
+  background-color: #fff; /* Dropdown background color */
+  color: #333; /* Dropdown text color */
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none; /* For older versions of Safari */
+  margin-bottom: 10px; /* Add margin for spacing */
+  width: 100%;
+}
+
+/* Style hover effect on dropdown options */
+.dropdown-select:hover {
+  background-color: #f0f0f0;
+}
+
+/* Submit button style */
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Hover effect on submit button */
+button[type="submit"]:hover {
+  background-color: #27ae60;
+}
+
+.questions-container {
+  display: none;
+}
+
+.full-width {
+  width: 100vw;
+}
+
+/* Add this CSS to style the questions in a rectangular card format */
+.question {
+  background-color: #f9f9f9; /* Background color for the card */
+  border-radius: 10px; /* Border radius for rounded corners */
+  padding: 20px; /* Padding inside the card */
+  margin-bottom: 20px; /* Margin between each card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+}
+
+.question h2 {
+  margin-bottom: 10px; /* Margin below the question heading */
+  font-size: 2rem; /* Font size for headings */
+  font-weight: bold; /* Bold text for headings */
+}
+
+.question p {
+  margin-bottom: 5px; /* Margin below each paragraph */
+  font-size: 1.5rem; /* Font size for paragraph texts */
+}

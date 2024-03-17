@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdown Menu</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Add this CSS to ensure proper scrolling */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .universal {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column; /* Align content vertically */
+        }
+
+        .nav_upper {
+            flex: 1; /* Expand to fill remaining space */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .container {
+            max-width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="universal">
+        <div class="card shadow">
+            <div class="nav_upper">
+                <nav class="navbar">
+                    <div class="container">
+                        <form action="/questions" method="POST">
+                            <h2>Choose Your Profession</h2>
+                            <select name="profession" class="dropdown-select">
+                                <option value="">Select Profession</option>
+                                <option value="Software Developer">Software Developer</option>
+                                <option value="Web Developer">Web Developer</option>
+                                <option value="Data Analyst">Data Analyst</option>
+                                <option value="Blockchain Developer">Blockchain Developer</option>
+                                <option value="Machine Learning Engineer">Machine Learning Engineer</option>
+                                <option value="Database Engineer">Database Engineer</option>
+                                <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
+                            </select>
+                
+                            <h2>Choose Difficulty</h2>
+                            <select name="difficulty" class="dropdown-select">
+                                <option value="">Select Difficulty</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </nav>
+                
+                <div class="container">
+                    <h2>Filtered Questions</h2>
+                    <ul class="questions-list">
+                        {% if questions %}
+                            {% for question in questions %}
+                            <li class="question">
+                                <h2>{{ question.question }}</h2>
+                                <p><strong>Difficulty:</strong> {{ question.difficulty_level }}</p>
+                                <p><strong>Answer:</strong> {{ question.answer }}</p>
+                                <p><strong>Reference:</strong> {{ question.reference }}</p>
+                                <p><strong>Tags:</strong> {{ question.tags|join(", ") }}</p>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li>No questions available.</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                
+                <div class="container">
+                    <form action="/download_pdf" method="POST">
+                        <input type="hidden" name="questions" value="{{ questions | tojson }}">
+                        <button type="submit">Download Filtered Questions as PDF</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function expandCard() {
+            var containers = document.getElementsByClassName("container");
+            for (var i = 0; i < containers.length; i++) {
+                containers[i].classList.add("full-width");
+            }
+        }
+    </script>
+</body>
+</html>
